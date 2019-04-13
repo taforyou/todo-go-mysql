@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "./App.css";
 import { Input, Icon, Button, Card, List, Checkbox } from "antd";
 
-// Step 3 - Design component and state
+// Step-6. [Frontend - Fetch - Read] Add endpoint Fetch API
+
+const URL = "http://192.168.1.4:1323/";
 
 class App extends Component {
   constructor(props) {
@@ -10,22 +12,32 @@ class App extends Component {
 
     this.state = {
       inputText: "",
-      todos: [
-        {
-          id: "1",
-          title: "Title1",
-          completed: true,
-          selected: true
-        },
-        {
-          id: "2",
-          title: "Title2",
-          completed: false,
-          selected: false
-        }
-      ],
+      todos: [],
       isLoading: false
     };
+  }
+
+  componentDidMount() {
+    this.getTodos();
+  }
+
+  async fetchAsync(url, opts) {
+    this.setState({ isLoading: true });
+
+    const resp = await fetch(url, opts);
+
+    if (resp.status !== 200) {
+      return;
+    }
+
+    this.setState({ isLoading: false });
+    return resp.json();
+  }
+
+  async getTodos() {
+    let todos = await this.fetchAsync(URL);
+
+    this.setState({ todos });
   }
 
   render() {
@@ -33,7 +45,6 @@ class App extends Component {
       <div className="App">
         <Card>
           <h1>To-do-list</h1>
-
           <div style={{ marginBottom: "10px" }}>
             <Input.Search
               placeholder="input search text"
