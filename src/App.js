@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import "./App.css";
 import { Input, Icon, Button, Card, List, Checkbox } from "antd";
 
-// Step-6. [Frontend - Fetch - Read] Add endpoint Fetch API
+// Step-7. [Frontend - Fetch - Create] Add endpoint Fetch API
 
-const URL = "http://192.168.1.4:1323/";
+const fetchTodos = "http://192.168.1.4:1323/fetchTodos";
+const addTodos = "http://192.168.1.4:1323/addTodos";
 
 class App extends Component {
   constructor(props) {
@@ -21,6 +22,40 @@ class App extends Component {
     this.getTodos();
   }
 
+  handleChangeText = event => {
+    this.setState({ inputText: event.target.value });
+  };
+
+  handleTemp = event => {
+    this.submitList();
+  };
+
+  async saveTodos(title) {
+    const newTodo = await this.fetchAsync(addTodos, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title
+      })
+    });
+    console.log(newTodo);
+    if (newTodo) {
+      this.setState({
+        todos: [...this.state.todos, newTodo]
+      });
+    }
+  }
+
+  async submitList() {
+    this.saveTodos(this.state.inputText);
+    this.setState({
+      inputText: ""
+    });
+  }
+
   async fetchAsync(url, opts) {
     this.setState({ isLoading: true });
 
@@ -35,7 +70,7 @@ class App extends Component {
   }
 
   async getTodos() {
-    let todos = await this.fetchAsync(URL);
+    let todos = await this.fetchAsync(fetchTodos);
 
     this.setState({ todos });
   }
@@ -50,6 +85,9 @@ class App extends Component {
               placeholder="input search text"
               enterButton="Add"
               size="large"
+              onChange={this.handleChangeText}
+              value={this.state.inputText}
+              onSearch={this.handleTemp}
             />
           </div>
 
