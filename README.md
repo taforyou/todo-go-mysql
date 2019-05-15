@@ -1,6 +1,6 @@
 ## Note ส่วนตัวกันลืมมม
 
-การ Query ของ mysql หรือ mariaDB น่าจะเอามาจาก http://go-database-sql.org/index.html
+การ Query ของ mysql หรือ mariaDB น่าจะเอามาจาก http://go-database-sql.org/index.html <br>
 ปล.เริ่มกลับมาอ่าน code ตัวเอง งงล่ะ ทำไมเขียน Advance จังแล้วดันลืมว่าไปหามาจากที่ไหน !!!
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
