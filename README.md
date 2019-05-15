@@ -1,7 +1,9 @@
 ## Note ส่วนตัวกันลืมมม
 
 การ Query ของ mysql หรือ mariaDB น่าจะเอามาจาก http://go-database-sql.org/index.html <br>
-ปล.เริ่มกลับมาอ่าน code ตัวเอง งงล่ะ ทำไมเขียน Advance จังแล้วดันลืมว่าไปหามาจากที่ไหน !!!
+ปล.เริ่มกลับมาอ่าน code ตัวเอง งงล่ะ ทำไมเขียน Advance จังแล้วดันลืมว่าไปหามาจากที่ไหน !!!<br>
+น่าจะอันนี้ด้วย https://tutorialedge.net/golang/golang-mysql-tutorial/ <br>
+ปนๆ กัน Mix ๆ กัน
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
